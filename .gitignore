@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+data/
+.env
+# Imported textbooks are copyrighted: import your own with --import-book
+knowledge/book/

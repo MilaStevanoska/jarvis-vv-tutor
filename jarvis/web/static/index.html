@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#060912">
+  <title>Jarvis · V&amp;V Tutor</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%2327e7ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <span class="orb" aria-hidden="true"></span>
+        <div>
+          <h1>JARVIS</h1>
+          <p class="tagline">Verification &amp; Validation tutor</p>
+        </div>
+      </div>
+      <span class="status" id="status" title="Model status">
+        <i class="dot" id="statusDot"></i><span id="statusText">connecting</span>
+      </span>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Mode">
+      <button class="tab" role="tab" id="tab-learn" data-view="learn" aria-controls="view-learn" aria-selected="true">Learn with Jarvis</button>
+      <button class="tab" role="tab" id="tab-cheat" data-view="cheat" aria-controls="view-cheat" aria-selected="false">Cheat on your exam</button>
+    </nav>
+
+    <!-- 1. Learn with Jarvis: normal tutoring chat -->
+    <section class="view learn" id="view-learn" role="tabpanel" aria-labelledby="tab-learn">
+      <aside class="chat-list" aria-label="Saved chats">
+        <button type="button" class="new-chat" id="newChat">+ New chat</button>
+        <div class="chat-items" id="chatItems"></div>
+      </aside>
+
+      <div class="chat-main">
+        <div class="chat" id="chat" aria-live="polite"></div>
+        <div class="composer">
+          <div class="chips" id="chips">
+            <button type="button" class="chip" data-message="What is the difference between verification and validation?">V vs V?</button>
+            <button type="button" class="chip" data-message="Give me a real-life example of validation failing while verification passes.">Give an example</button>
+            <button type="button" class="chip" data-message="What is the difference between static and dynamic techniques?">Static vs dynamic?</button>
+            <button type="button" class="chip" data-message="Explain the testing levels: unit, integration, system and acceptance.">Testing levels</button>
+          </div>
+          <form class="input-row" id="form" autocomplete="off">
+            <input id="input" type="text" maxlength="2000" placeholder="Ask Jarvis about V&amp;V..." aria-label="Message">
+            <button class="send" id="send" type="submit" aria-label="Send">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 11.5 21 3l-7.5 18-2.6-7.2L3 11.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Cheat on your exam: Verification or Validation? -->
+    <section class="view" id="view-cheat" role="tabpanel" aria-labelledby="tab-cheat" hidden>
+      <form class="cheat-form" id="cheatForm" autocomplete="off">
+        <label for="requirement" class="cheat-label">Paste a requirement or activity. Jarvis tells you if it is <b class="v-ver">Verification</b> or <b class="v-val">Validation</b>.</label>
+        <textarea id="requirement" maxlength="1000" rows="3" placeholder="e.g. The system shall respond to a search within 2 seconds, checked with load tests."></textarea>
+        <div class="cheat-actions">
+          <div class="chips" id="examples">
+            <button type="button" class="chip" data-example="A team inspects the source code using a checklist of common errors.">Code inspection</button>
+            <button type="button" class="chip" data-example="The customer tests the finished system with their own real data before accepting it.">Acceptance test</button>
+            <button type="button" class="chip" data-example="Unit tests check that each function returns the outputs given in the specification.">Unit tests</button>
+            <button type="button" class="chip" data-example="Future users try a clickable prototype and say whether it fits how they work.">Prototype demo</button>
+          </div>
+          <button class="primary" id="cheatSend" type="submit">Ask Jarvis</button>
+        </div>
+      </form>
+      <div class="results" id="results" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
